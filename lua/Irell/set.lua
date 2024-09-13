@@ -5,7 +5,6 @@ vim.o.mouse = ""
 vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.rnu = true
-vim.opt.clipboard = "unnamedplus"
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
