@@ -16,6 +16,7 @@ return {
                     "pyright",
                     "grammarly",
                     "marksman",
+                    "clangd",
                 }
             })
 
@@ -37,6 +38,9 @@ return {
                 capabilities=capabilities,
             })
             lspconfig.marksman.setup({
+                capabilities=capabilities,
+            })
+            lspconfig.clangd.setup({
                 capabilities=capabilities,
             })
 
