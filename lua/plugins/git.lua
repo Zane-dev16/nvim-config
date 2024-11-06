@@ -11,7 +11,11 @@ return {
             "ibhagwan/fzf-lua",              -- optional
             "echasnovski/mini.pick",         -- optional
         },
-        config = true
+        config = function()
+            require('neogit').setup {}
+            -- Remap <leader>ng to open Neogit
+            vim.keymap.set("n", "<leader>ng", ":Neogit<CR>", { noremap = true, silent = true })
+        end,
     },
     {
         "lewis6991/gitsigns.nvim",
