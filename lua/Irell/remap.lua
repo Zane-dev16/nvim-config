@@ -17,3 +17,9 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>y", "\"+Y")
 
 vim.keymap.set("n", "<leader>gl", vim.cmd.Glow)
+
+-- Mapping to copy the name of the current file to the clipboard
+vim.api.nvim_set_keymap('n', '<leader>cf', ':let @" = expand("%")<CR>', { noremap = true, silent = true })
+
+-- Mapping to copy the full path of the current file to the clipboard
+vim.api.nvim_set_keymap('n', '<leader>cp', ':let @" = expand("%:p")<CR>', { noremap = true, silent = true })
