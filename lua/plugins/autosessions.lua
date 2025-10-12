@@ -1,6 +1,7 @@
 return {
   'rmagatti/auto-session',
   lazy = false,
+  config = true,
   keys = {
     -- Will use Telescope if installed or a vim.ui.select picker otherwise
     { '<leader>wf', '<cmd>SessionSearch<CR>', desc = 'Session search' },
@@ -10,6 +11,7 @@ return {
   },
 
   opts = {
+    suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
     -- ⚠️ This will only work if Telescope.nvim is installed
     -- The following are already the default values, no need to provide them if these are already the settings you want.
     session_lens = {
@@ -33,4 +35,4 @@ return {
       },
     },
   }
-}   
+}

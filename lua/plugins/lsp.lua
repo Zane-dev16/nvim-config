@@ -1,29 +1,37 @@
 return {
     {
         "williamboman/mason.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("mason").setup()
+        end,
+        enabled = false
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        version = "1.32.0",
         dependencies = {
-            "williamboman/mason-lspconfig.nvim",
+            "williamboman/mason.nvim",
         },
         config = function()
-            local mason = require("mason")
-            local mason_lspconfig = require("mason-lspconfig")
-
-            mason.setup()
-
-            mason_lspconfig.setup({
+            require("mason-lspconfig").setup({
                 ensure_installed = {
                     "lua_ls",
                     "pyright",
-                    "grammarly",
-                    "marksman",
                     "clangd",
                 }
             })
-
-        end
+        end,
+        enabled = false
     },
     {
         "neovim/nvim-lspconfig",
+        version = "0.1.7",
+        dependencies = {
+            "williamboman/mason-lspconfig.nvim",
+            "hrsh7th/cmp-nvim-lsp",  -- Explicitly include this dependency
+        },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -32,12 +40,6 @@ return {
                 capabilities=capabilities,
             })
             lspconfig.pyright.setup({
-                capabilities=capabilities,
-            })
-            lspconfig.grammarly.setup({
-                capabilities=capabilities,
-            })
-            lspconfig.marksman.setup({
                 capabilities=capabilities,
             })
             lspconfig.clangd.setup({
@@ -59,6 +61,7 @@ return {
             vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {})
             vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, {})
             vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
-        end
+        end,
+        enabled = false
     }
 }
